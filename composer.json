@@ -1,6 +1,7 @@
 {
     "name": "reusablecog/type-toolbox",
     "type": "library",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "ReusableCog\\TypeToolbox\\": "src/"
@@ -11,7 +12,7 @@
     },
     "authors": [
         {
-            "name": "JBlairy",
+            "name": "Julien Blairy",
             "email": "blairy@julien.fr"
         }
     ],

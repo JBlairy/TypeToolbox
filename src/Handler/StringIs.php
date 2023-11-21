@@ -12,4 +12,9 @@ final class StringIs
 
         return false;
     }
+
+    public static function nullOnEmpty(?string $mixedValue): ?string
+    {
+        return self::empty($mixedValue) ? null : $mixedValue;
+    }
 }

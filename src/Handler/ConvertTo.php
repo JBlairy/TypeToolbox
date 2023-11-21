@@ -6,6 +6,23 @@ use ReusableCog\TypeToolbox\Exception\UnexpectedTypeException;
 
 final class ConvertTo
 {
+    public static function bool(mixed $mixedValue): bool
+    {
+        if (null === $mixedValue) {
+            return false;
+        }
+
+        if (is_bool($mixedValue)) {
+            return $mixedValue;
+        }
+
+        if (in_array($mixedValue, ['0', 0, 'false', 'true', 1, '1'], true)) {
+            return (bool)$mixedValue;
+        }
+
+        throw new UnexpectedTypeException(gettype($mixedValue) . ' is not a supported type.');
+    }
+
     public static function float(mixed $mixedValue): float
     {
         if (null === $mixedValue) {

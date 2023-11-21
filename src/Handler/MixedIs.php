@@ -18,6 +18,33 @@ final class MixedIs
         return $mixedValue;
     }
 
+    public static function bool(mixed $mixedValue): bool
+    {
+        if (!is_bool($mixedValue)) {
+            throw new UnexpectedTypeException(gettype($mixedValue) . ' is not a boolean.');
+        }
+
+        return $mixedValue;
+    }
+
+    public static function float(mixed $mixedValue): float
+    {
+        if (!is_float($mixedValue)) {
+            throw new UnexpectedTypeException(gettype($mixedValue) . ' is not a float.');
+        }
+
+        return $mixedValue;
+    }
+
+    public static function int(mixed $mixedValue): float
+    {
+        if (!is_int($mixedValue)) {
+            throw new UnexpectedTypeException(gettype($mixedValue) . ' is not an integer.');
+        }
+
+        return $mixedValue;
+    }
+
     public static function string(mixed $mixedValue): string
     {
         if (!is_string($mixedValue)) {

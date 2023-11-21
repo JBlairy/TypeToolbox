@@ -12,7 +12,7 @@ final class MixedIs
     public static function array(mixed $mixedValue): array
     {
         if (!is_array($mixedValue)) {
-            throw new UnexpectedTypeException('Type Error.');
+            throw new UnexpectedTypeException(gettype($mixedValue) . ' is not an array.');
         }
 
         return $mixedValue;
@@ -21,7 +21,7 @@ final class MixedIs
     public static function string(mixed $mixedValue): string
     {
         if (!is_string($mixedValue)) {
-            throw new UnexpectedTypeException('Type Error.');
+            throw new UnexpectedTypeException(gettype($mixedValue) . ' is not a string.');
         }
 
         return $mixedValue;

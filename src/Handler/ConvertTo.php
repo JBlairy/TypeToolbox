@@ -2,30 +2,37 @@
 
 namespace ReusableCog\TypeToolbox\Handler;
 
+use ReusableCog\TypeToolbox\Exception\UnexpectedTypeException;
+
 final class ConvertTo
 {
-    public static function float(null|float|int|string $mixedValue): float
+    public static function float(mixed $mixedValue): float
     {
         if (null === $mixedValue) {
             return 0;
         }
 
-        return (float)$mixedValue;
+        if (is_string($mixedValue) || is_numeric($mixedValue)) {
+            return (float)$mixedValue;
+        }
+
+        throw new UnexpectedTypeException(gettype($mixedValue) . ' is not a supported type.');
     }
 
-    public static function int(null|bool|float|int|string $mixedValue): int
+    public static function int(mixed $mixedValue): int
     {
         if (null === $mixedValue) {
             return 0;
         }
 
-        return (int)$mixedValue;
+        if (is_string($mixedValue) || is_numeric($mixedValue) || is_bool($mixedValue)) {
+            return (int)$mixedValue;
+        }
+
+        throw new UnexpectedTypeException(gettype($mixedValue) . ' is not a supported type.');
     }
 
-    /**
-     * @param array<mixed, mixed>|bool|float|int|string|null $mixedValue
-     */
-    public static function string(null|array|bool|float|int|string $mixedValue): string
+    public static function string(mixed $mixedValue): string
     {
         if (null === $mixedValue) {
             return '';
@@ -35,6 +42,10 @@ final class ConvertTo
             return implode(',', $mixedValue);
         }
 
-        return (string)$mixedValue;
+        if (is_bool($mixedValue) || is_numeric($mixedValue) || is_string($mixedValue)) {
+            return (string)$mixedValue;
+        }
+
+        throw new UnexpectedTypeException(gettype($mixedValue) . ' is not a supported type.');
     }
 }
